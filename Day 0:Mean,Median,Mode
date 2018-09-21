@@ -1,0 +1,75 @@
+package us.abdullahalimohammed.hackerrank.statistics;
+
+import java.util.Scanner;
+import java.util.Arrays;
+public class Solution {
+	
+	public static void main(String[] args) {
+		Scanner in=new Scanner(System.in);
+		double sum=0.0;
+		double mean=0.0;
+		double median=0.0;
+		
+//		System.out.println("Enter number of values");
+		int n=in.nextInt();
+		int[] array=new int[n];
+		for(int i=0;i<n;i++) {
+			array[i]=in.nextInt();
+		}
+		
+		for(int i=0;i<n;i++) {
+			sum+=array[i];
+		}
+		mean=sum/n;
+		System.out.println(mean);
+		Arrays.sort(array);
+//		System.out.println(Arrays.toString(array));
+		
+		if(n%2!=0) {
+			median=array[n/2];
+			System.out.println(median);
+		}else if(n%2==0) {
+			median=(array[n/2]+array[(n/2)-1]);
+			double median1=median/2;
+			System.out.println(median1);
+		}
+		
+		
+//		mode
+		int modeCount = 0;	// The count of the mode value
+		int mode = 0;		// The value of the mode
+
+		int currCount = 0;	
+		int currElement;
+		
+		// Iterate through all values in our array and consider it as a possible mode
+		for (int candidateMode : array)
+		{
+			// Reset the number of times we have seen the current value
+			currCount = 0;
+			
+			// Iterate through the array counting the number of times we see the current candidate mode
+			for (int element : array)
+			{
+				// If they match, increment the current count
+				if (candidateMode == element)
+				{
+					currCount++;
+				}
+			}
+			
+			// We only save this candidate mode, if its count is greater than the current mode
+			// we have stored in the "mode" variable
+			if (currCount > modeCount)
+			{
+				modeCount = currCount;
+				mode = candidateMode;
+			}
+		}
+		
+		System.out.println(mode);
+	}
+		
+	}
+
+
